@@ -21,21 +21,27 @@ class MyApp extends App {
   }
 
   render () {
-    const { Component, pageProps, reduxStore } = this.props
+    const { Component, reduxStore, router } = this.props
     return (
       <Container>
         <Provider store={reduxStore}>
-          <Layout>
+          <Layout router={router}>
             <PageTransition timeout={300} classNames='page-transition'>
-              <Component {...pageProps} />
+              <Component {...this.props} />
             </PageTransition>
           </Layout>
         </Provider>
         <style jsx global>{`
             body {
+              --color-darkgrey:#949494;
+              --color-lightgrey: #E4E4E4;
+              font-family: ProximaNova;
               height: 100vh;
               width: 100vw;
               box-sizing: border-box;
+              color: var(--color-darkgrey);
+              font-size: 13px;
+              margin: 0;
             }
             .page-transition-enter {
               opacity: 0;
@@ -54,6 +60,10 @@ class MyApp extends App {
             a {
               text-decoration: none;
               color: inherit;
+            }
+            ul {
+              margin: 0;
+              padding: 0;
             }
             li {
               list-style: none;

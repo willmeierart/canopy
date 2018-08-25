@@ -3,28 +3,49 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { checkIfMobile, getVPDims } from '../../lib/redux/actions'
+// import { childrenWithProps } from '../../lib/_utils'
 import Header from './Header'
-import Footer from './Footer'
+
+// const { Provider, Consumer } = React.createContext({ env: { isMobile: false, vpDims: { width: 0, height: 0 } } })
+
+// const childrenWithProps = (children, props) =>
+//   React.Children.map((children, child) =>
+//     React.cloneElement(child, { ...props })
+//   )
 
 // import globalStyles from '../../styles/index.scss'
 
 class Layout extends Component {
   componentDidMount () {
-
+    this.props.onCheckIfMobile()
+    this.props.onGetVPDims()
+    window.addEventListener('resize', () => {
+      this.props.onCheckIfMobile()
+      this.props.onGetVPDims()
+    })
   }
   render () {
-    const { children } = this.props
+    const { children, isMobile, router } = this.props
+    const activePage = router ? router.asPath.substring(1) : 'about'
+    console.log(router)
     return (
       <div className='app-outer'>
         <div className='app-inner'>
           <header>
-            <Header />
+            <Header activePage={activePage} isMobile={isMobile} />
           </header>
-          <section>{ children }</section>
-          <footer>
-            <Footer />
-          </footer>
+          <section>
+            {/* <Provider ctx={{ ...this.props }}>
+              <Consumer>{ ctx => <div>{ childrenWithProps(children, this.props) }</div> }</Consumer>
+            </Provider> */}
+            { children }
+          </section>
         </div>
+        <style jsx>{`
+          .app-outer, .app-inner, section {
+            // min-height: 90vh;
+          }
+        `}</style>
       </div>
     )
   }

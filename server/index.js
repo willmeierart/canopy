@@ -2,6 +2,7 @@ const express = require('express')
 const next = require('next')
 const compression = require('compression')
 const Router = require('./routes').Router
+const sitemap = require('./sitemap')
 
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
@@ -10,7 +11,10 @@ const handle = app.getRequestHandler()
 
 app.prepare()
   .then(() => {
-    const server = express().use(compression()) // just an express server
+    const server = express()
+      .use(compression())
+      .use('/static', express.static('static'))
+    sitemap({ server })
 
     Router.forEachPattern((page, pattern, defaultParams) => // this function comes from next-url-prettifier
       server.get(pattern, (req, res) => {
@@ -36,15 +40,17 @@ app.prepare()
 // other way:
 
 // app.prepare().then(() => {
-//   express()
-//     .use(compression())
+//   const server = express()
+
+//   sitemap({ server })
+
+//   server.use(compression())
+//     .use('/static', express.static('static'))
 //     .use(handle)
 //     .listen(port, err => {
 //       if (err) throw err
 //       console.log(`> Ready on http://localhost:${port}`)
 //     })
-
-//   // const server = express()
 
 //   // server.use('/static', express.static('static'))
 

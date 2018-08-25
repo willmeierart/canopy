@@ -7,8 +7,16 @@ const routes = [
   {
     page: 'index',
     title: 'Home',
-    description: ''
-    // prettyUrl: '/carwash'
+    description: '',
+    prettyUrl: '/about',
+    prettyUrlPatterns: [
+      {
+        pattern: '/:ext',
+        defaultParams: {
+          ext: 'about'
+        }
+      }
+    ]
   }
   // {
   //   page: 'washes',
