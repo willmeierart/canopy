@@ -17,6 +17,17 @@ const routes = [
         }
       }
     ]
+  },
+  {
+    page: 'dox',
+    title: 'Dox',
+    description: '',
+    prettyUrl: '/dox',
+    prettyUrlPatterns: [
+      {
+        pattern: '/dox',
+      }
+    ]
   }
   // {
   //   page: 'washes',
