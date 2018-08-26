@@ -29,7 +29,6 @@ export default class TransitionGroupWrapper extends Component {
             <div className='inner-wrapper'>
               { this.renderComponent() }
             </div>
-            <style jsx>{``}</style>
           </div>
         )}
       </Transition>

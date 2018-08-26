@@ -41,11 +41,6 @@ class Layout extends Component {
             { children }
           </section>
         </div>
-        <style jsx>{`
-          .app-outer, .app-inner, section {
-            // min-height: 90vh;
-          }
-        `}</style>
       </div>
     )
   }
