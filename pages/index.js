@@ -6,7 +6,7 @@ import ImperativeRouter from '../server/ImperativeRouter'
 class HomePage extends Component {
   componentDidMount () {
     console.log(this.props)
-    if (this.props.router.asPath.indexOf('about') === -1) {
+    if (this.props.router.asPath === '/') {
       ImperativeRouter.push('index', { ext: 'about' }, false)
     }
   }

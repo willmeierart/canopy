@@ -25,7 +25,7 @@ const routes = [
     prettyUrl: '/dox',
     prettyUrlPatterns: [
       {
-        pattern: '/dox',
+        pattern: '/dox'
       }
     ]
   }
