@@ -11,10 +11,7 @@ const routes = [
     prettyUrl: '/about',
     prettyUrlPatterns: [
       {
-        pattern: '/:ext',
-        defaultParams: {
-          ext: 'about'
-        }
+        pattern: '/about'
       }
     ]
   },
