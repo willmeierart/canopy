@@ -50,6 +50,9 @@ class DOX extends Component {
             width: 80vw;
             margin: auto;
           }
+          .logo {
+            margin-top: 20px;
+          }
           .video-wrapper {
             overflow: hidden;
             display: inline-block;
