@@ -1,5 +1,3 @@
-import Link from 'next/link'
-
 const Header = ({ isMobile, activePage }) => {
   console.log(activePage)
   return (

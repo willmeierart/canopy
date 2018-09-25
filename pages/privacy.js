@@ -4,7 +4,7 @@ import Head from '../components/Head'
 const PrivacyPage = props => {
   return (
     <main>
-      <Head />
+      <Head title='Privacy - Canopy' />
       <Privacy />
       <style jsx>{`
         main {

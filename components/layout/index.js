@@ -1,6 +1,5 @@
 // main wrapper component - layout, universal styles, etc.
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { checkIfMobile, getVPDims } from '../../lib/redux/actions'
 // import { childrenWithProps } from '../../lib/_utils'
@@ -27,6 +26,7 @@ class Layout extends Component {
   render () {
     const { children, isMobile, router } = this.props
     const activePage = router ? router.asPath.substring(1) : 'about'
+    const isPrivacyPage = activePage.indexOf('privacy') !== -1
     console.log(router)
     return (
       <div className='app-outer'>
@@ -41,6 +41,22 @@ class Layout extends Component {
             { children }
           </section>
         </div>
+        <div className='footer-link'>
+          <a href={isPrivacyPage ? '/' : '/privacy'}>{ isPrivacyPage ? 'Home' : 'Our Terms of Service & Privacy Policy' }</a>
+        </div>
+        <style jsx>{`
+          .footer-link {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            color: var(--color-darkgrey);
+            margin-top: 2em;
+            margin-bottom: 2em;
+          }
+          .footer-link:hover {
+            color: var(--color-lightgrey);
+          }
+        `}</style>
       </div>
     )
   }

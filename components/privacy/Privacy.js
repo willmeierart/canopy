@@ -303,7 +303,6 @@ const Privacy = props => {
             </li>
           </ol>
         </div>
-        <div className='home'><a href='/'>HOME</a></div>
       </div>
       <style jsx>{`
         .container {
