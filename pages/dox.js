@@ -25,7 +25,7 @@ class DOX extends Component {
           </div>
           <div className='video-wrapper'>
             <iframe id='ytplayer' type='text/html' width={WIDTH} height={HEIGHT}
-              src='https://www.youtube.com/embed/_36xkzplHOg?autoplay=1&controls=0&loop=1&playsinline=1&showinfo=0&modestbranding=1'
+              src='https://www.youtube.com/embed/_36xkzplHOg?autoplay=1&controls=0&loop=1&playsinline=1&showinfo=0&modestbranding=1&rel=0'
               frameBorder='0' />
           </div>
           <div className='store-wrapper'>
