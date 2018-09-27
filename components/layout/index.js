@@ -27,6 +27,7 @@ class Layout extends Component {
     const { children, isMobile, router } = this.props
     const activePage = router ? router.asPath.substring(1) : 'about'
     const isPrivacyPage = activePage.indexOf('privacy') !== -1
+    const isAboutPage = activePage.indexOf('about') !== -1
     console.log(router)
     return (
       <div className='app-outer'>
@@ -41,9 +42,11 @@ class Layout extends Component {
             { children }
           </section>
         </div>
-        <div className='footer-link'>
-          <a href={isPrivacyPage ? '/' : '/privacy'}>{ isPrivacyPage ? 'Home' : 'Our Terms of Service & Privacy Policy' }</a>
-        </div>
+        { (isAboutPage || isPrivacyPage) &&
+          <div className='footer-link'>
+            <a href={isPrivacyPage ? '/' : '/privacy'}>{ isPrivacyPage ? 'Home' : 'Our Terms of Service & Privacy Policy' }</a>
+          </div>
+        }
         <style jsx>{`
           .footer-link {
             width: 100%;
