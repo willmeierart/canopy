@@ -9,62 +9,24 @@ const app = next({ dev })
 const port = process.env.PORT || 3000
 const handle = app.getRequestHandler()
 
-app.prepare()
-  .then(() => {
-    const server = express()
-      .use(compression())
-      .use('/static', express.static('static'))
-    sitemap({ server })
+app.prepare().then(() => {
+	const server = express().use(compression()).use('/static', express.static('static'))
+	sitemap({ server })
 
-    Router.forEachPattern((page, pattern, defaultParams) => // this function comes from next-url-prettifier
-      server.get(pattern, (req, res) => {
-        // console.log('\x1b[36m%s\x1b[0m', JSON.stringify(req.params))
-        // console.log('\x1b[35m%s\x1b[0m', JSON.stringify(req.query)) // query string
-        // console.log('\x1b[32m%s\x1b[0m', JSON.stringify(pattern))
+	Router.forEachPattern((
+		page,
+		pattern,
+		defaultParams // this function comes from next-url-prettifier
+	) =>
+		server.get(pattern, (req, res) =>
+			app.render(req, res, `/${page}`, Object.assign({}, defaultParams, req.query, req.params))
+		)
+	)
 
-        const objAssigned = Object.assign({}, defaultParams, req.query, req.params)
-        // console.log(objAssigned)
+	server.get('*', (req, res) => handle(req, res))
 
-        return app.render(req, res, `/${page}`, objAssigned)
-      })
-    )
-
-    server.get('*', (req, res) => handle(req, res))
-
-    server.listen(port, (err) => {
-      if (err) throw err
-      console.log(`> Ready on http://localhost:${port}`)
-    })
-  })
-
-// other way:
-
-// app.prepare().then(() => {
-//   const server = express()
-
-//   sitemap({ server })
-
-//   server.use(compression())
-//     .use('/static', express.static('static'))
-//     .use(handle)
-//     .listen(port, err => {
-//       if (err) throw err
-//       console.log(`> Ready on http://localhost:${port}`)
-//     })
-
-//   // server.use('/static', express.static('static'))
-
-//   // // server.get('/thing/:id', (req, res) => {
-//   // //     return app.render(req, res, '/thing', { id: req.params.id })
-//   // // })
-
-//   // server.get('*', (req, res) => {
-//   //   // return handle(req, res)
-//   //   return app.render(req, res, '/', req.query)
-//   // })
-
-//   // server.listen(port, (err) => {
-//   //   if (err) throw err
-//   //   console.log(`> Ready on http://localhost:${port}`)
-//   // })
-// })
+	server.listen(port, err => {
+		if (err) throw err
+		console.log(`> Ready on http://localhost:${port}`)
+	})
+})

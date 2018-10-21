@@ -6,10 +6,10 @@ import renderer from 'react-test-renderer'
 import App from '../components/App'
 
 describe('With Enzyme', () => {
-  it('renders correctly', () => {
-    const app = shallow(<App />)
-    expect(app).toMatchSnapshot()
-  })
+	it('renders correctly', () => {
+		const app = shallow(<App />)
+		expect(app).toMatchSnapshot()
+	})
 })
 
 // describe('With Snapshot Testing', () => {
