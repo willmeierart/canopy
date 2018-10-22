@@ -6,44 +6,36 @@ import { checkBrowser } from '../lib/redux/actions'
 import { binder } from '../lib/_utils'
 import StoreIcons from '../components/layout/StoreIcons'
 
-class Qora extends Component {
+class Torla extends Component {
 	componentDidMount () {
 		this.props.onCheckBrowser()
 	}
 	render () {
-		const aspect = 640 / 1136
+		const aspect = 640 / 564
 		const { isMobile, dims, browser } = this.props
 		const mult = 0.7
-		const HEIGHT = dims ? dims.height * mult : 800
-		const WIDTH = HEIGHT * aspect
+		const WIDTH = dims ? dims.width * mult : 800
+		const HEIGHT = WIDTH / aspect
 		return (
 			<main>
-				<Head title='Qora - Canopy' />
+				<Head title='Torla - Canopy' />
 				<section>
 					<div className='copy'>
-						<div className='title'>Qora</div>
+						<div className='title'>Torla</div>
 						<div className='description'>
-							Explore mysterious and stunning landscapes as you uncover the past in this pixel-art adventure game.
+							This whimsical rpg was in development for seven months before it’s kickstarter campaign didn’t reach its
+							goal and the project was indefinitely set aside.
 						</div>
 					</div>
 					<div className='video-wrapper'>
 						<iframe
-							id='ytplayer'
-							type='text/html'
-							width={WIDTH}
-							height={HEIGHT}
-							src='https://www.youtube.com/embed/f8EkoJzr_x0?autoplay=1&controls=0&loop=1&playsinline=1&showinfo=0&modestbranding=1&rel=0'
-							frameBorder='0'
-						/>
-					</div>
-					<div className='store-wrapper'>
-						<StoreIcons
-							isMobile={isMobile}
-							device={browser}
-							icons={{
-								steam: 'https://store.steampowered.com/app/304460/Qora/',
-								itchio: 'https://megavice.itch.io/qora'
-							}}
+							width='640'
+							height='564'
+							src='https://player.vimeo.com/video/256636770'
+							frameborder='0'
+							allowFullScreen
+							mozallowfullscreen='true'
+							webkitallowfullscreen
 						/>
 					</div>
 				</section>
@@ -103,6 +95,6 @@ function mapDispatchToProps (dispatch) {
 	}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Qora)
+export default connect(mapStateToProps, mapDispatchToProps)(Torla)
 
-Qora.propTypes = {}
+Torla.propTypes = {}

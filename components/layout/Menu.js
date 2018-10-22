@@ -6,14 +6,11 @@ class Menu extends Component {
 	constructor (props) {
 		super(props)
 		this.state = {
-			activeTopMenuItem: 'film'
+			activeTopMenuItem: null
 		}
 	}
 
-	componentDidMount () {}
-
 	handleHover = activeTopMenuItem => {
-		console.log(activeTopMenuItem)
 		this.setState({ activeTopMenuItem })
 	}
 
@@ -163,7 +160,6 @@ class Menu extends Component {
 				</li>
 			)
 		})
-		console.log(menu)
 		return menu
 	}
 
