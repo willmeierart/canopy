@@ -20,8 +20,9 @@ class DOX extends Component {
 			<main>
 				<Head title='DOX - Canopy' />
 				<section>
-					<div className='logo'>
-						<img alt='DOX logo' src='/static/assets/dox_title.png' />
+					<div className='copy'>
+						<div className='title'>DOX: A Puzzle Game</div>
+						<div className='description'>Learn the language of each unique button to remove them from the grid.</div>
 					</div>
 					<div className='video-wrapper'>
 						<iframe
@@ -34,7 +35,15 @@ class DOX extends Component {
 						/>
 					</div>
 					<div className='store-wrapper'>
-						<StoreIcons isMobile={isMobile} device={browser} />
+						<StoreIcons
+							isMobile={isMobile}
+							device={browser}
+							icons={{
+								appstore: 'https://itunes.apple.com/us/app/dox-a-puzzle-game/id1422501586?ls=1&mt=8',
+								google: 'https://play.google.com/store/apps/details?id=com.canopyltd.dox',
+								amazon: 'https://www.amazon.com/dp/B07HQ7NZXD/ref=sr_1_1?ie=UTF8&qid=1538111245&sr=8-1'
+							}}
+						/>
 					</div>
 				</section>
 				<style jsx>{`
@@ -49,14 +58,18 @@ class DOX extends Component {
 						display: flex;
 						flex-direction: column;
 						justify-content: center;
-						text-align: center;
 						align-items: center;
 						height: 100%;
 						width: 80vw;
 						margin: auto;
 					}
-					.logo {
-						margin-top: 20px;
+					.copy {
+						margin: 20px 0;
+						width: ${WIDTH}px;
+					}
+					.title {
+						font-weight: bold;
+						text-transform: uppercase;
 					}
 					.video-wrapper {
 						overflow: hidden;

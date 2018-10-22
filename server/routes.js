@@ -16,17 +16,6 @@ const routes = [
 		]
 	},
 	{
-		page: 'dox',
-		title: 'Dox',
-		description: '',
-		prettyUrl: '/games/dox',
-		prettyUrlPatterns: [
-			{
-				pattern: '/games/dox'
-			}
-		]
-	},
-	{
 		page: 'qora',
 		title: 'Qora',
 		description: '',
@@ -38,13 +27,13 @@ const routes = [
 		]
 	},
 	{
-		page: 'gardener',
-		title: 'Gardener',
+		page: 'torla',
+		title: 'Torla',
 		description: '',
-		prettyUrl: '/games/gardener',
+		prettyUrl: '/games/torla',
 		prettyUrlPatterns: [
 			{
-				pattern: '/games/gardener'
+				pattern: '/games/torla'
 			}
 		]
 	},
@@ -74,10 +63,10 @@ const routes = [
 		page: 'wtfami',
 		title: 'Where the Fuck Am I',
 		description: '',
-		prettyUrl: '/film/wtf-am-i',
+		prettyUrl: '/film/wtfami',
 		prettyUrlPatterns: [
 			{
-				pattern: '/film/wtf-am-i'
+				pattern: '/film/wtfami'
 			}
 		]
 	}

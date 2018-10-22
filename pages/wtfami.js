@@ -19,15 +19,35 @@ class WTFAmI extends Component {
 	}
 
 	render () {
-		const aspect = 640 / 1136
+		const aspect = 640 / 564
 		const { isMobile, dims, browser } = this.props
 		const mult = 0.7
-		const HEIGHT = dims ? dims.height * mult : 800
-		const WIDTH = HEIGHT * aspect
+		const WIDTH = dims ? dims.width * mult : 800
+		const HEIGHT = WIDTH / aspect
 		return (
 			<main>
 				<Head title='Where the Fuck Am I - Canopy' />
-				<section />
+				<section>
+					<div className='text'>
+						<div className='title'>Where the Fuck Am I?</div>
+						<div className='description'>
+							Experimental. Travel. Sketch. Show. Each episode of “Where the Fuck Am I?” explores a different part of
+							the world through surreal sketches, comedy, documentary, animation and more. A 30min pilot episode was
+							finished in October 2018. Watch the trailer below:
+						</div>
+					</div>
+					<div className='video-wrapper'>
+						<iframe
+							width={WIDTH}
+							height={HEIGHT}
+							src='https://player.vimeo.com/video/295476411'
+							frameborder='0'
+							allowFullScreen
+							mozallowfullscreen
+							webkitallowfullscreen
+						/>
+					</div>
+				</section>
 				<style jsx>{`
 					main {
 						height: 100%;
@@ -40,14 +60,18 @@ class WTFAmI extends Component {
 						display: flex;
 						flex-direction: column;
 						justify-content: center;
-						text-align: center;
 						align-items: center;
 						height: 100%;
 						width: 80vw;
 						margin: auto;
 					}
-					.logo {
+					.text {
+						width: ${WIDTH}px;
+					}
+					.title {
 						margin-top: 20px;
+						font-weight: bold;
+						text-transform: uppercase;
 					}
 					.video-wrapper {
 						overflow: hidden;
@@ -59,15 +83,6 @@ class WTFAmI extends Component {
 						min-width: ${WIDTH}px;
 						min-height: ${HEIGHT}px;
 						margin-top: 10px;
-					}
-					.btn {
-						padding: 3em;
-						background: red;
-						color: white;
-						cursor: pointer;
-					}
-					.btn:hover {
-						background: darkred;
 					}
 				`}</style>
 			</main>

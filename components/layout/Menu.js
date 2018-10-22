@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { routes } from '../../server/routes'
 
 class Menu extends Component {
 	constructor (props) {
@@ -20,174 +21,169 @@ class Menu extends Component {
 		window.innerWidth < 700 && this.handleHover(activeTopMenuItem)
 	}
 
-	render () {
+	formatRoutes = () => {
+		return routes.reduce((routeObj, route) => {
+			const splitRoute = route.prettyUrl.split('/')
+			const topLvl = splitRoute[1]
+			const child = splitRoute[2]
+			if (routeObj[topLvl]) {
+				routeObj[topLvl].children.push(route)
+			} else {
+				routeObj[topLvl] = {
+					url: route.prettyUrl,
+					children: !child ? null : [ route ]
+				}
+			}
+			return routeObj
+		}, {})
+	}
+
+	renderMenu = () => {
 		const { activePage, isMobile } = this.props
 		const { activeTopMenuItem } = this.state
-		console.log(activePage)
+		const menu = Object.keys(this.formatRoutes()).reverse().map(routeName => {
+			const route = this.formatRoutes()[routeName]
+			return (
+				<li key={routeName} className={`${routeName} ${activePage.indexOf(routeName) !== -1 && 'active'}`}>
+					<div
+						onClick={() => {
+							route.children && this.handleClick(routeName)
+						}}
+						onMouseOver={() => {
+							this.handleHover(route.children ? routeName : null)
+						}}
+						className='top-lvl-item'
+					>
+						{route.children ? <a href={route.prettyUrl}>{routeName}</a> : routeName}
+					</div>
+					{route.children &&
+					activeTopMenuItem === routeName && (
+						<React.Fragment>
+							<div className='arrow' />
+							<ul>
+								{route.children.map(subroute => (
+									<li key={subroute.page} className={activePage === subroute.prettyUrl && 'active'}>
+										<a href={subroute.prettyUrl}>{subroute.title}</a>
+									</li>
+								))}
+							</ul>
+						</React.Fragment>
+					)}
+					<style jsx>{`
+						ul {
+							display: flex;
+							flex-grow: 1;
+							flex-direction: ${isMobile ? 'row' : 'column'};
+						}
+						li {
+							cursor: pointer;
+							font-size: 12px;
+							text-align: ${isMobile ? 'center' : 'left'};
+							display: flex;
+							width: fit-content;
+							white-space: pre;
+							position: relative;
+						}
+						.top-lvl-item,
+						li li {
+							padding: 1px;
+							padding-left: ${!isMobile ? '3px' : '1px'};
+						}
+						li li {
+							width: 100%;
+							box-sizing: border-box;
+						}
+						li ul {
+							position: absolute;
+							left: 100%;
+							top: 0;
+						}
+						.film ul {
+							 {
+								/* min-width: 106px; */
+							}
+						}
+						li:hover {
+							background-color: var(--color-lightgrey);
+						}
+						li.active .top-lvl-item,
+						li li.active {
+							background-color: var(--color-darkgrey);
+							color: white;
+						}
+						li.active ul,
+						li.active div {
+							 {
+								/* background: none; */
+							}
+						}
+						.top-lvl-item {
+							width: 50px;
+						}
+						.arrow,
+						li.active .arrow,
+						React.Fragment {
+							background: white !important;
+							padding: 0 5px;
+						}
+						.arrow::after {
+							content: '>';
+						}
+						@media screen and (max-width: 700px) {
+							.arrow {
+								position: absolute;
+								top: 100%;
+								left: 0;
+								width: 100%;
+								text-align: center;
+							}
+							.arrow::after {
+								content: 'v';
+								font-family: sans-serif;
+								font-weight: light;
+							}
+							li {
+								position: initial;
+							}
+							li ul {
+								left: 0;
+								top: 200%;
+								width: 100%;
+							}
+							li ul li a {
+								width: 100%;
+								text-align: center;
+							}
+							.film,
+							.games {
+								flex-direction: column;
+							}
+						}
+					`}</style>
+				</li>
+			)
+		})
+		console.log(menu)
+		return menu
+	}
+
+	render () {
 		return (
 			<div
 				onMouseLeave={() => {
 					this.handleHover(null)
 				}}
 			>
-				<ul className='top-ul'>
-					<li className={`film ${activePage.indexOf('film') !== -1 && 'active'}`}>
-						<div
-							onClick={() => {
-								this.handleClick('film')
-							}}
-							onMouseOver={() => {
-								this.handleHover('film')
-							}}
-							className='top-lvl-item'
-						>
-							film
-						</div>
-						{activeTopMenuItem === 'film' && (
-							<React.Fragment>
-								<div className='arrow' />
-								<ul>
-									<li className={activePage.indexOf('wtf-am-i') !== -1 && 'active'}>
-										<a href='/film/wtf-am-i'>where the fuck am i?</a>
-									</li>
-									<li className={activePage.indexOf('portfolio') !== -1 && 'active'}>
-										<a href='/film/portfolio'>portfolio</a>
-									</li>
-								</ul>
-							</React.Fragment>
-						)}
-					</li>
-					<li className={`games ${activePage.indexOf('games') !== -1 && 'active'}`}>
-						<div
-							onClick={() => {
-								this.handleClick('games')
-							}}
-							onMouseOver={() => {
-								this.handleHover('games')
-							}}
-							className='top-lvl-item'
-						>
-							games
-						</div>
-						{activeTopMenuItem === 'games' && (
-							<React.Fragment>
-								<div className='arrow' />
-								<ul>
-									<li className={activePage.indexOf('dox') !== -1 && 'active'}>
-										<a href='/games/dox'>DOX</a>
-									</li>
-									<li className={activePage.indexOf('qora') !== -1 && 'active'}>
-										<a href='/games/qora'>qora</a>
-									</li>
-									<li className={activePage.indexOf('gardener') !== -1 && 'active'}>
-										<a href='/games/gardener'>gardener</a>
-									</li>
-								</ul>
-							</React.Fragment>
-						)}
-					</li>
-					<li className={activePage.indexOf('about') !== -1 && 'active'}>
-						<div
-							onMouseOver={() => {
-								this.handleHover(null)
-							}}
-							className='top-lvl-item'
-						>
-							<a href='/about'>about</a>
-						</div>
-					</li>
-				</ul>
+				<ul className='top-ul'>{this.renderMenu()}</ul>
 				<style jsx>{`
 					ul {
 						display: flex;
 						flex-grow: 1;
-						flex-direction: ${isMobile ? 'row' : 'column'};
-					}
-					li {
-						cursor: pointer;
-						font-size: 12px;
-						text-align: ${isMobile ? 'center' : 'left'};
-						display: flex;
-						width: fit-content;
-						white-space: pre;
-						position: relative;
-					}
-					.top-lvl-item,
-					li li {
-						padding: 1px;
-						padding-left: ${!isMobile ? '3px' : '1px'};
-					}
-					li li {
-						width: 100%;
-						box-sizing: border-box;
-					}
-					li ul {
-						position: absolute;
-						left: 100%;
-						top: 0;
-					}
-					.film ul {
-						 {
-							/* min-width: 106px; */
-						}
-					}
-					li:hover {
-						background-color: var(--color-lightgrey);
-					}
-					li.active .top-lvl-item,
-					li li.active {
-						background-color: var(--color-darkgrey);
-						color: white;
-					}
-					li.active ul,
-					li.active div {
-						 {
-							/* background: none; */
-						}
-					}
-					.top-lvl-item {
-						width: 50px;
-					}
-					.arrow,
-					li.active .arrow,
-					React.Fragment {
-						background: white !important;
-						padding: 0 5px;
-					}
-					.arrow::after {
-						content: '>';
+						flex-direction: ${this.props.isMobile ? 'row' : 'column'};
 					}
 					@media screen and (max-width: 700px) {
-						.arrow {
-							position: absolute;
-							top: 100%;
-							left: 0;
-							width: 100%;
-							text-align: center;
-						}
-						.arrow::after {
-							content: 'v';
-							font-family: sans-serif;
-							font-weight: light;
-						}
-						.top-ul {
+						ul {
 							position: relative;
-						}
-						li {
-							position: initial;
-						}
-						li ul {
-							left: 0;
-							top: 200%;
-							width: 100%;
-						}
-						li ul li a {
-							width: 100%;
-							text-align: center;
-						}
-						.film,
-						.games {
-							flex-direction: column;
 						}
 					}
 				`}</style>

@@ -25,9 +25,6 @@ class HomePage extends Component {
 					<div className='contact'>
 						say <a href='mailto:hello@canopy.limited'>hello@canopy.limited</a>
 					</div>
-					<div className='notice'>
-						Our site is currently being updated. <br /> Check back soon for lots of new projects!{' '}
-					</div>
 					<div className='socials'>
 						<a href='https://twitter.com/canopylimited'>
 							<img alt='canopy on twitter' src='/static/assets/twitter_icon.png' />

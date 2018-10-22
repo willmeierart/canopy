@@ -20,8 +20,11 @@ class Qora extends Component {
 			<main>
 				<Head title='Qora - Canopy' />
 				<section>
-					<div className='logo'>
-						<img alt='Qora logo' src='/static/assets/Qora_title.png' />
+					<div className='copy'>
+						<div className='title'>Qora</div>
+						<div className='description'>
+							Explore mysterious and stunning landscapes as you uncover the past in this pixel-art adventure game.
+						</div>
 					</div>
 					<div className='video-wrapper'>
 						<iframe
@@ -29,12 +32,19 @@ class Qora extends Component {
 							type='text/html'
 							width={WIDTH}
 							height={HEIGHT}
-							src='https://www.youtube.com/embed/_36xkzplHOg?autoplay=1&controls=0&loop=1&playsinline=1&showinfo=0&modestbranding=1&rel=0'
+							src='https://www.youtube.com/embed/f8EkoJzr_x0?autoplay=1&controls=0&loop=1&playsinline=1&showinfo=0&modestbranding=1&rel=0'
 							frameBorder='0'
 						/>
 					</div>
 					<div className='store-wrapper'>
-						<StoreIcons isMobile={isMobile} device={browser} />
+						<StoreIcons
+							isMobile={isMobile}
+							device={browser}
+							icons={{
+								steam: 'https://store.steampowered.com/app/304460/Qora/',
+								itchio: 'https://megavice.itch.io/qora'
+							}}
+						/>
 					</div>
 				</section>
 				<style jsx>{`
@@ -49,14 +59,18 @@ class Qora extends Component {
 						display: flex;
 						flex-direction: column;
 						justify-content: center;
-						text-align: center;
 						align-items: center;
 						height: 100%;
 						width: 80vw;
 						margin: auto;
 					}
-					.logo {
-						margin-top: 20px;
+					.copy {
+						margin: 20px 0;
+						width: ${WIDTH}px;
+					}
+					.title {
+						font-weight: bold;
+						text-transform: uppercase;
 					}
 					.video-wrapper {
 						overflow: hidden;
