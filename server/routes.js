@@ -61,7 +61,7 @@ const routes = [
 	},
 	{
 		page: 'wtfami',
-		title: 'Where the Fuck Am I',
+		title: 'Where the Fuck Am I?',
 		description: '',
 		prettyUrl: '/film/wtfami',
 		prettyUrlPatterns: [

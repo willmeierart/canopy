@@ -28,6 +28,9 @@ const Header = props => {
 					.header-outer {
 						margin-bottom: 50px;
 					}
+					.header-inner {
+						margin-left: 0;
+					}
 				}
 			`}</style>
 		</div>

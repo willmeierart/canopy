@@ -11,11 +11,11 @@ class Torla extends Component {
 		this.props.onCheckBrowser()
 	}
 	render () {
-		const aspect = 640 / 564
+		const aspect = 412 / 987
 		const { isMobile, dims, browser } = this.props
 		const mult = 0.7
 		const WIDTH = dims ? dims.width * mult : 800
-		const HEIGHT = WIDTH / aspect
+		const HEIGHT = WIDTH * aspect
 		return (
 			<main>
 				<Head title='Torla - Canopy' />
@@ -29,13 +29,13 @@ class Torla extends Component {
 					</div>
 					<div className='video-wrapper'>
 						<iframe
-							width='640'
-							height='564'
+							width={WIDTH}
+							height={HEIGHT}
 							src='https://player.vimeo.com/video/256636770'
-							frameborder='0'
+							frameBorder='0'
 							allowFullScreen
 							mozallowfullscreen='true'
-							webkitallowfullscreen
+							webkitallowfullscreen='true'
 						/>
 					</div>
 				</section>
@@ -54,7 +54,8 @@ class Torla extends Component {
 						align-items: center;
 						height: 100%;
 						width: 80vw;
-						margin: auto;
+						margin: 0 auto;
+						margin-top: 20px;
 					}
 					.copy {
 						margin: 20px 0;

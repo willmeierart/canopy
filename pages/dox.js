@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Head from '../components/Head'
 import { checkBrowser } from '../lib/redux/actions'
-import { binder } from '../lib/_utils'
 import StoreIcons from '../components/layout/StoreIcons'
 
 class DOX extends Component {

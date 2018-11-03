@@ -2,9 +2,10 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Grid from '../components/portfolio/Grid'
 import FullScreenPlayer from '../components/portfolio/FullScreenPlayer'
+import { checkBrowser } from '../lib/redux/actions'
 import { portfolio } from '../lib/data'
 
-export default class Portfolio extends Component {
+class Portfolio extends Component {
 	constructor (props) {
 		super(props)
 		this.state = {
@@ -61,7 +62,12 @@ export default class Portfolio extends Component {
 							handleClick={this.handleClick}
 						/>
 					) : (
-						<Grid handleClick={this.handleClick} workSamples={portfolio} setActiveItem={this.setActiveItem} />
+						<Grid
+							isMobile={this.props.isMobile}
+							handleClick={this.handleClick}
+							workSamples={portfolio}
+							setActiveItem={this.setActiveItem}
+						/>
 					)}
 				</section>
 				<style jsx>{`
@@ -99,5 +105,21 @@ export default class Portfolio extends Component {
 		)
 	}
 }
+
+function mapStateToProps (state) {
+	return {
+		isMobile: state.env.isMobile,
+		dims: state.env.dims,
+		browser: state.env.browser
+	}
+}
+
+function mapDispatchToProps (dispatch) {
+	return {
+		onCheckBrowser: () => dispatch(checkBrowser())
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Portfolio)
 
 Portfolio.propTypes = {}

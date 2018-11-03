@@ -58,6 +58,8 @@ class Grid extends Component {
 						grid-gap: 2vw;
 						padding: 2vw;
 						box-sizing: border-box;
+						padding-top: 5px;
+						flex-direction: ${this.props.isMobile ? 'column' : 'row'};
 					}
 					@media screen and (max-width: 700px) {
 						.grid-wrapper {

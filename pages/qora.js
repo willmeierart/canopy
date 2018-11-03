@@ -11,11 +11,11 @@ class Qora extends Component {
 		this.props.onCheckBrowser()
 	}
 	render () {
-		const aspect = 640 / 1136
+		const aspect = 9 / 16
 		const { isMobile, dims, browser } = this.props
 		const mult = 0.7
-		const HEIGHT = dims ? dims.height * mult : 800
-		const WIDTH = HEIGHT * aspect
+		const WIDTH = dims ? dims.width * mult : 800
+		const HEIGHT = WIDTH * aspect
 		return (
 			<main>
 				<Head title='Qora - Canopy' />
@@ -62,7 +62,8 @@ class Qora extends Component {
 						align-items: center;
 						height: 100%;
 						width: 80vw;
-						margin: auto;
+						margin: 0 auto;
+						margin-top: 20px;
 					}
 					.copy {
 						margin: 20px 0;
@@ -81,7 +82,6 @@ class Qora extends Component {
 						height: ${HEIGHT}px;
 						min-width: ${WIDTH}px;
 						min-height: ${HEIGHT}px;
-						margin-top: 10px;
 					}
 				`}</style>
 			</main>

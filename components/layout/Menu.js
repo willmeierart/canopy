@@ -6,7 +6,7 @@ class Menu extends Component {
 	constructor (props) {
 		super(props)
 		this.state = {
-			activeTopMenuItem: null
+			activeTopMenuItem: 'film'
 		}
 	}
 
@@ -40,6 +40,7 @@ class Menu extends Component {
 		const { activeTopMenuItem } = this.state
 		const menu = Object.keys(this.formatRoutes()).reverse().map(routeName => {
 			const route = this.formatRoutes()[routeName]
+			console.log(route)
 			return (
 				<li key={routeName} className={`${routeName} ${activePage.indexOf(routeName) !== -1 && 'active'}`}>
 					<div
@@ -51,7 +52,7 @@ class Menu extends Component {
 						}}
 						className='top-lvl-item'
 					>
-						{route.children ? <a href={route.prettyUrl}>{routeName}</a> : routeName}
+						{route.children ? routeName : <a href={route.url}>{routeName}</a>}
 					</div>
 					{route.children &&
 					activeTopMenuItem === routeName && (
@@ -143,9 +144,19 @@ class Menu extends Component {
 								position: initial;
 							}
 							li ul {
+								top: 75px;
+								width: 100vw;
 								left: 0;
-								top: 200%;
-								width: 100%;
+								box-sizing: border-box;
+								justify-content: center;
+							}
+							li div {
+								top: 61px;
+							}
+							li ul li {
+								padding: 0 1em;
+								box-sizing: border-box;
+								width: fit-content;
 							}
 							li ul li a {
 								width: 100%;
@@ -179,7 +190,9 @@ class Menu extends Component {
 					}
 					@media screen and (max-width: 700px) {
 						ul {
-							position: relative;
+							 {
+								/* position: relative; */
+							}
 						}
 					}
 				`}</style>
