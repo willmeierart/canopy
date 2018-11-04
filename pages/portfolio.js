@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import Grid from '../components/portfolio/Grid'
 import FullScreenPlayer from '../components/portfolio/FullScreenPlayer'
 import { checkBrowser } from '../lib/redux/actions'

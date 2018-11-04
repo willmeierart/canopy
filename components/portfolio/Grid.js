@@ -51,7 +51,6 @@ class Grid extends Component {
 				{this.renderGrid()}
 				<style jsx>{`
 					.grid-wrapper {
-						width: 100vw;
 						display: grid;
 						grid-template-rows: ${rows === 2 ? 'repeat(2, 1fr)' : 'repeat(3, 1fr)'};
 						grid-template-columns: ${rows === 2 ? 'repeat(6, 1fr)' : 'repeat(4, 1fr)'};

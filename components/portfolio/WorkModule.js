@@ -43,6 +43,8 @@ class WorkModule extends Component {
 						background-size: contain;
 						width: ${rows === 2 ? 'calc(86vw / 6)' : 'calc(90vw / 4)'};
 						height: ${rows === 2 ? 'calc(86vw / 6)' : 'calc(90vw / 4)'};
+						max-width: 210px;
+						max-height: 210px;
 						display: flex;
 						opacity: ${this.state.isHovered ? 0.5 : 1};
 						cursor: pointer;
