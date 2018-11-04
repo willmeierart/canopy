@@ -37,6 +37,11 @@ class Grid extends Component {
 					<div className='text'>
 						<div className='title'>{work.title}</div>
 						<div className='description'>{work.description}</div>
+						<style jsx>{`
+							.title {
+								font-weight: bold;
+							}
+						`}</style>
 					</div>
 				)}
 				<WorkModule data={work} setActiveItem={setActiveItem} handleClick={handleClick} rows={this.state.rows} />

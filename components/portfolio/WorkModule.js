@@ -55,7 +55,9 @@ class WorkModule extends Component {
 							width: 96vw;
 							height: 96vw;
 							margin: auto;
-							margin-bottom: 2vw;
+							margin-bottom: 4vw;
+							max-width: 96vw;
+							max-height: 96vw;
 						}
 					}
 					 {
