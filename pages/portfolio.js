@@ -91,6 +91,7 @@ class Portfolio extends Component {
 						position: absolute;
 						bottom: 100%;
 						margin-left: 2vw;
+						margin-bottom: 1em;
 					}
 					.text .title {
 						font-weight: bold;

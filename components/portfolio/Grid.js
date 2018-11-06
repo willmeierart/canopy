@@ -41,6 +41,9 @@ class Grid extends Component {
 							.title {
 								font-weight: bold;
 							}
+							.text {
+								margin: 1em 0;
+							}
 						`}</style>
 					</div>
 				)}
